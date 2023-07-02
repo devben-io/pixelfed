@@ -439,6 +439,8 @@ spec:
                   name: env-docker
           image: redis:5-alpine
           name: redis
+          ports:
+            - containerPort: 6379
           resources: {}
           volumeMounts:
             - mountPath: /data

@@ -448,16 +448,15 @@ spec:
           name: worker
           resources: {}
           volumeMounts:
-            - mountPath: /var/www/storage
-              name: app-storage
-            - mountPath: /var/www/bootstrap
-              name: app-bootstrap
+            - mountPath: /var/www/.env
+              name: config-volume
+              subPath: env
       restartPolicy: Always
       volumes:
-        - name: app-storage
-          persistentVolumeClaim:
-            claimName: app-storage
-        - name: app-bootstrap
-          persistentVolumeClaim:
-            claimName: app-bootstrap
+        - name: config-volume
+          configMap:
+            name: env-docker
+            items:
+            - key: env
+              path: env
 status: {}

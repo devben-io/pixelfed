@@ -1,22 +1,28 @@
 apiVersion: v1
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  labels:
+    io.kompose.service: app-env-docker
+  name: env-docker
 data:
   ACCOUNT_DELETE_AFTER: "false"
   ACCOUNT_DELETION: "true"
   ACTIVITY_PUB: "false"
-  ADMIN_DOMAIN: real.domain
+  ADMIN_DOMAIN: localhost
   ADMIN_ENV_EDITOR: "false"
   AP_INBOX: "false"
   AP_OUTBOX: "false"
   AP_REMOTE_FOLLOW: "false"
   AP_SHAREDINBOX: "false"
   APP_DEBUG: "false"
-  APP_DOMAIN: real.domain
+  APP_DOMAIN: localhost
   APP_ENV: production
   APP_KEY: ""
   APP_LOCALE: en
   APP_NAME: Pixelfed Prod
   APP_TIMEZONE: UTC
-  APP_URL: https://real.domain
+  APP_URL: http://localhost:8080/
   ATOM_FEEDS: "true"
   BROADCAST_DRIVER: log
   CACHE_DRIVER: redis
@@ -77,14 +83,10 @@ data:
   REDIS_SCHEME: tcp
   RESTRICT_HTML_TYPES: "true"
   RESTRICTED_INSTANCE: "false"
-  SESSION_DOMAIN: real.domain
+  SESSION_DOMAIN: localhost
   SESSION_DRIVER: redis
   STORIES_ENABLED: "false"
   TRUST_PROXIES: '*'
   WEBFINGER: "true"
-kind: ConfigMap
-metadata:
-  creationTimestamp: null
-  labels:
-    io.kompose.service: app-env-docker
-  name: env-docker
+  
+  env: |-

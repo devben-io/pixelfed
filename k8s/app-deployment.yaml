@@ -444,21 +444,30 @@ spec:
             - containerPort: 80
           resources: {}
           volumeMounts:
-            - mountPath: /var/www/storage
-              name: app-storage
-            - mountPath: /var/www/bootstrap
-              name: app-bootstrap
+            # - mountPath: /var/www/storage
+            #   name: app-storage
+            # - mountPath: /var/www/bootstrap
+            #   name: app-bootstrap
+            # - mountPath: /var/www/.env
+            #   name: app-claim2
             - mountPath: /var/www/.env
-              name: app-claim2
+              name: config-volume
+              subPath: env
       restartPolicy: Always
       volumes:
-        - name: app-storage
-          persistentVolumeClaim:
-            claimName: app-storage
-        - name: app-bootstrap
-          persistentVolumeClaim:
-            claimName: app-bootstrap
-        - name: app-claim2
-          persistentVolumeClaim:
-            claimName: app-claim2
+        # - name: app-storage
+        #   persistentVolumeClaim:
+        #     claimName: app-storage
+        # - name: app-bootstrap
+        #   persistentVolumeClaim:
+        #     claimName: app-bootstrap
+        # - name: app-claim2
+        #   persistentVolumeClaim:
+        #     claimName: app-claim2
+        - name: config-volume
+          configMap:
+            name: env-docker
+            items:
+            - key: env
+              path: env
 status: {}

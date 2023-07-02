@@ -3,11 +3,11 @@ kind: Kustomization
 namespace: pixelfed
 resources:
 - namespace.yaml
-- app-bootstrap-pvc.yaml
-- app-claim2-pvc.yaml
+# - app-bootstrap-pvc.yaml
+# - app-claim2-pvc.yaml
 - app-deployment.yaml
 - app-service.yaml
-- app-storage-pvc.yaml
+# - app-storage-pvc.yaml
 - db-data-pvc.yaml
 - db-deployment.yaml
 - db-service.yaml
@@ -16,4 +16,5 @@ resources:
 - internal-networkpolicy.yaml
 - redis-data-pvc.yaml
 - redis-deployment.yaml
-- worker-deployment.yaml
+- redis-service.yaml
+# - worker-deployment.yaml
