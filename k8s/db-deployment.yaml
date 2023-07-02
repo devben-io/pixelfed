@@ -1,0 +1,453 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert -f ../docker-compose.yml
+    kompose.version: 1.26.1 (HEAD)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: db
+  name: db
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: db
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert -f ../docker-compose.yml
+        kompose.version: 1.26.1 (HEAD)
+      creationTimestamp: null
+      labels:
+        io.kompose.network/internal: "true"
+        io.kompose.service: db
+    spec:
+      containers:
+        - args:
+            - --default-authentication-plugin=mysql_native_password
+          env:
+            - name: ACCOUNT_DELETE_AFTER
+              valueFrom:
+                configMapKeyRef:
+                  key: ACCOUNT_DELETE_AFTER
+                  name: env-docker
+            - name: ACCOUNT_DELETION
+              valueFrom:
+                configMapKeyRef:
+                  key: ACCOUNT_DELETION
+                  name: env-docker
+            - name: ACTIVITY_PUB
+              valueFrom:
+                configMapKeyRef:
+                  key: ACTIVITY_PUB
+                  name: env-docker
+            - name: ADMIN_DOMAIN
+              valueFrom:
+                configMapKeyRef:
+                  key: ADMIN_DOMAIN
+                  name: env-docker
+            - name: ADMIN_ENV_EDITOR
+              valueFrom:
+                configMapKeyRef:
+                  key: ADMIN_ENV_EDITOR
+                  name: env-docker
+            - name: APP_DEBUG
+              valueFrom:
+                configMapKeyRef:
+                  key: APP_DEBUG
+                  name: env-docker
+            - name: APP_DOMAIN
+              valueFrom:
+                configMapKeyRef:
+                  key: APP_DOMAIN
+                  name: env-docker
+            - name: APP_ENV
+              valueFrom:
+                configMapKeyRef:
+                  key: APP_ENV
+                  name: env-docker
+            - name: APP_KEY
+              valueFrom:
+                configMapKeyRef:
+                  key: APP_KEY
+                  name: env-docker
+            - name: APP_LOCALE
+              valueFrom:
+                configMapKeyRef:
+                  key: APP_LOCALE
+                  name: env-docker
+            - name: APP_NAME
+              valueFrom:
+                configMapKeyRef:
+                  key: APP_NAME
+                  name: env-docker
+            - name: APP_TIMEZONE
+              valueFrom:
+                configMapKeyRef:
+                  key: APP_TIMEZONE
+                  name: env-docker
+            - name: APP_URL
+              valueFrom:
+                configMapKeyRef:
+                  key: APP_URL
+                  name: env-docker
+            - name: AP_INBOX
+              valueFrom:
+                configMapKeyRef:
+                  key: AP_INBOX
+                  name: env-docker
+            - name: AP_OUTBOX
+              valueFrom:
+                configMapKeyRef:
+                  key: AP_OUTBOX
+                  name: env-docker
+            - name: AP_REMOTE_FOLLOW
+              valueFrom:
+                configMapKeyRef:
+                  key: AP_REMOTE_FOLLOW
+                  name: env-docker
+            - name: AP_SHAREDINBOX
+              valueFrom:
+                configMapKeyRef:
+                  key: AP_SHAREDINBOX
+                  name: env-docker
+            - name: ATOM_FEEDS
+              valueFrom:
+                configMapKeyRef:
+                  key: ATOM_FEEDS
+                  name: env-docker
+            - name: BROADCAST_DRIVER
+              valueFrom:
+                configMapKeyRef:
+                  key: BROADCAST_DRIVER
+                  name: env-docker
+            - name: CACHE_DRIVER
+              valueFrom:
+                configMapKeyRef:
+                  key: CACHE_DRIVER
+                  name: env-docker
+            - name: DB_CONNECTION
+              valueFrom:
+                configMapKeyRef:
+                  key: DB_CONNECTION
+                  name: env-docker
+            - name: DB_DATABASE
+              valueFrom:
+                configMapKeyRef:
+                  key: DB_DATABASE
+                  name: env-docker
+            - name: DB_HOST
+              valueFrom:
+                configMapKeyRef:
+                  key: DB_HOST
+                  name: env-docker
+            - name: DB_PASSWORD
+              valueFrom:
+                configMapKeyRef:
+                  key: DB_PASSWORD
+                  name: env-docker
+            - name: DB_PORT
+              valueFrom:
+                configMapKeyRef:
+                  key: DB_PORT
+                  name: env-docker
+            - name: DB_USERNAME
+              valueFrom:
+                configMapKeyRef:
+                  key: DB_USERNAME
+                  name: env-docker
+            - name: ENFORCE_EMAIL_VERIFICATION
+              valueFrom:
+                configMapKeyRef:
+                  key: ENFORCE_EMAIL_VERIFICATION
+                  name: env-docker
+            - name: EXP_LC
+              valueFrom:
+                configMapKeyRef:
+                  key: EXP_LC
+                  name: env-docker
+            - name: EXP_LOOPS
+              valueFrom:
+                configMapKeyRef:
+                  key: EXP_LOOPS
+                  name: env-docker
+            - name: EXP_REC
+              valueFrom:
+                configMapKeyRef:
+                  key: EXP_REC
+                  name: env-docker
+            - name: FILESYSTEM_CLOUD
+              valueFrom:
+                configMapKeyRef:
+                  key: FILESYSTEM_CLOUD
+                  name: env-docker
+            - name: HORIZON_DARKMODE
+              valueFrom:
+                configMapKeyRef:
+                  key: HORIZON_DARKMODE
+                  name: env-docker
+            - name: HORIZON_PREFIX
+              valueFrom:
+                configMapKeyRef:
+                  key: HORIZON_PREFIX
+                  name: env-docker
+            - name: IMAGE_DRIVER
+              valueFrom:
+                configMapKeyRef:
+                  key: IMAGE_DRIVER
+                  name: env-docker
+            - name: IMAGE_QUALITY
+              valueFrom:
+                configMapKeyRef:
+                  key: IMAGE_QUALITY
+                  name: env-docker
+            - name: INSTANCE_PUBLIC_HASHTAGS
+              valueFrom:
+                configMapKeyRef:
+                  key: INSTANCE_PUBLIC_HASHTAGS
+                  name: env-docker
+            - name: INSTANCE_PUBLIC_LOCAL_TIMELINE
+              valueFrom:
+                configMapKeyRef:
+                  key: INSTANCE_PUBLIC_LOCAL_TIMELINE
+                  name: env-docker
+            - name: LIMIT_ACCOUNT_SIZE
+              valueFrom:
+                configMapKeyRef:
+                  key: LIMIT_ACCOUNT_SIZE
+                  name: env-docker
+            - name: LOG_CHANNEL
+              valueFrom:
+                configMapKeyRef:
+                  key: LOG_CHANNEL
+                  name: env-docker
+            - name: MAIL_DRIVER
+              valueFrom:
+                configMapKeyRef:
+                  key: MAIL_DRIVER
+                  name: env-docker
+            - name: MAIL_ENCRYPTION
+              valueFrom:
+                configMapKeyRef:
+                  key: MAIL_ENCRYPTION
+                  name: env-docker
+            - name: MAIL_FROM_ADDRESS
+              valueFrom:
+                configMapKeyRef:
+                  key: MAIL_FROM_ADDRESS
+                  name: env-docker
+            - name: MAIL_FROM_NAME
+              valueFrom:
+                configMapKeyRef:
+                  key: MAIL_FROM_NAME
+                  name: env-docker
+            - name: MAIL_HOST
+              valueFrom:
+                configMapKeyRef:
+                  key: MAIL_HOST
+                  name: env-docker
+            - name: MAIL_PASSWORD
+              valueFrom:
+                configMapKeyRef:
+                  key: MAIL_PASSWORD
+                  name: env-docker
+            - name: MAIL_PORT
+              valueFrom:
+                configMapKeyRef:
+                  key: MAIL_PORT
+                  name: env-docker
+            - name: MAIL_USERNAME
+              valueFrom:
+                configMapKeyRef:
+                  key: MAIL_USERNAME
+                  name: env-docker
+            - name: MAX_ACCOUNT_SIZE
+              valueFrom:
+                configMapKeyRef:
+                  key: MAX_ACCOUNT_SIZE
+                  name: env-docker
+            - name: MAX_ALBUM_LENGTH
+              valueFrom:
+                configMapKeyRef:
+                  key: MAX_ALBUM_LENGTH
+                  name: env-docker
+            - name: MAX_AVATAR_SIZE
+              valueFrom:
+                configMapKeyRef:
+                  key: MAX_AVATAR_SIZE
+                  name: env-docker
+            - name: MAX_BIO_LENGTH
+              valueFrom:
+                configMapKeyRef:
+                  key: MAX_BIO_LENGTH
+                  name: env-docker
+            - name: MAX_CAPTION_LENGTH
+              valueFrom:
+                configMapKeyRef:
+                  key: MAX_CAPTION_LENGTH
+                  name: env-docker
+            - name: MAX_LINKS_PER_POST
+              valueFrom:
+                configMapKeyRef:
+                  key: MAX_LINKS_PER_POST
+                  name: env-docker
+            - name: MAX_NAME_LENGTH
+              valueFrom:
+                configMapKeyRef:
+                  key: MAX_NAME_LENGTH
+                  name: env-docker
+            - name: MAX_PHOTO_SIZE
+              valueFrom:
+                configMapKeyRef:
+                  key: MAX_PHOTO_SIZE
+                  name: env-docker
+            - name: MEDIA_EXIF_DATABASE
+              valueFrom:
+                configMapKeyRef:
+                  key: MEDIA_EXIF_DATABASE
+                  name: env-docker
+            - name: MYSQL_DATABASE
+              valueFrom:
+                configMapKeyRef:
+                  key: MYSQL_DATABASE
+                  name: env-docker
+            - name: MYSQL_PASSWORD
+              valueFrom:
+                configMapKeyRef:
+                  key: MYSQL_PASSWORD
+                  name: env-docker
+            - name: MYSQL_RANDOM_ROOT_PASSWORD
+              valueFrom:
+                configMapKeyRef:
+                  key: MYSQL_RANDOM_ROOT_PASSWORD
+                  name: env-docker
+            - name: MYSQL_USER
+              valueFrom:
+                configMapKeyRef:
+                  key: MYSQL_USER
+                  name: env-docker
+            - name: NODEINFO
+              valueFrom:
+                configMapKeyRef:
+                  key: NODEINFO
+                  name: env-docker
+            - name: OAUTH_ENABLED
+              valueFrom:
+                configMapKeyRef:
+                  key: OAUTH_ENABLED
+                  name: env-docker
+            - name: OPEN_REGISTRATION
+              valueFrom:
+                configMapKeyRef:
+                  key: OPEN_REGISTRATION
+                  name: env-docker
+            - name: PF_COSTAR_ENABLED
+              valueFrom:
+                configMapKeyRef:
+                  key: PF_COSTAR_ENABLED
+                  name: env-docker
+            - name: PF_ENABLE_CLOUD
+              valueFrom:
+                configMapKeyRef:
+                  key: PF_ENABLE_CLOUD
+                  name: env-docker
+            - name: PF_MAX_USERS
+              valueFrom:
+                configMapKeyRef:
+                  key: PF_MAX_USERS
+                  name: env-docker
+            - name: PF_OPTIMIZE_IMAGES
+              valueFrom:
+                configMapKeyRef:
+                  key: PF_OPTIMIZE_IMAGES
+                  name: env-docker
+            - name: PF_OPTIMIZE_VIDEOS
+              valueFrom:
+                configMapKeyRef:
+                  key: PF_OPTIMIZE_VIDEOS
+                  name: env-docker
+            - name: QUEUE_DRIVER
+              valueFrom:
+                configMapKeyRef:
+                  key: QUEUE_DRIVER
+                  name: env-docker
+            - name: REDIS_CLIENT
+              valueFrom:
+                configMapKeyRef:
+                  key: REDIS_CLIENT
+                  name: env-docker
+            - name: REDIS_DATABASE
+              valueFrom:
+                configMapKeyRef:
+                  key: REDIS_DATABASE
+                  name: env-docker
+            - name: REDIS_HOST
+              valueFrom:
+                configMapKeyRef:
+                  key: REDIS_HOST
+                  name: env-docker
+            - name: REDIS_PASSWORD
+              valueFrom:
+                configMapKeyRef:
+                  key: REDIS_PASSWORD
+                  name: env-docker
+            - name: REDIS_PORT
+              valueFrom:
+                configMapKeyRef:
+                  key: REDIS_PORT
+                  name: env-docker
+            - name: REDIS_SCHEME
+              valueFrom:
+                configMapKeyRef:
+                  key: REDIS_SCHEME
+                  name: env-docker
+            - name: RESTRICTED_INSTANCE
+              valueFrom:
+                configMapKeyRef:
+                  key: RESTRICTED_INSTANCE
+                  name: env-docker
+            - name: RESTRICT_HTML_TYPES
+              valueFrom:
+                configMapKeyRef:
+                  key: RESTRICT_HTML_TYPES
+                  name: env-docker
+            - name: SESSION_DOMAIN
+              valueFrom:
+                configMapKeyRef:
+                  key: SESSION_DOMAIN
+                  name: env-docker
+            - name: SESSION_DRIVER
+              valueFrom:
+                configMapKeyRef:
+                  key: SESSION_DRIVER
+                  name: env-docker
+            - name: STORIES_ENABLED
+              valueFrom:
+                configMapKeyRef:
+                  key: STORIES_ENABLED
+                  name: env-docker
+            - name: TRUST_PROXIES
+              valueFrom:
+                configMapKeyRef:
+                  key: TRUST_PROXIES
+                  name: env-docker
+            - name: WEBFINGER
+              valueFrom:
+                configMapKeyRef:
+                  key: WEBFINGER
+                  name: env-docker
+          image: mariadb:jammy
+          name: db
+          resources: {}
+          volumeMounts:
+            - mountPath: /var/lib/mysql
+              name: db-data
+      restartPolicy: Always
+      volumes:
+        - name: db-data
+          persistentVolumeClaim:
+            claimName: db-data
+status: {}
