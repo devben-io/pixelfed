@@ -441,6 +441,8 @@ spec:
                   name: env-docker
           image: mariadb:jammy
           name: db
+          ports:
+            - containerPort: 3306
           resources: {}
           volumeMounts:
             - mountPath: /var/lib/mysql

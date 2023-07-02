@@ -9,6 +9,8 @@ resources:
 - app-service.yaml
 - app-storage-pvc.yaml
 - db-data-pvc.yaml
+- db-deployment.yaml
+- db-service.yaml
 - env-docker-configmap.yaml
 - external-networkpolicy.yaml
 - internal-networkpolicy.yaml
